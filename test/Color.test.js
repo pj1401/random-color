@@ -6,6 +6,7 @@
  */
 
 import Color from '../src/Color.js'
+import { RGB } from '../src/RGB.js'
 
 /**
  * Represents a color test case.
@@ -62,13 +63,13 @@ class ExpectedColor {
 
 describe('Color', () => {
   test('Initialising', () => {
-    const testCase = new ColorTestCase(new Color('rgb(181, 100, 100)'), new ExpectedColor('#b56464', 'rgb(181, 100, 100)'))
+    const testCase = new ColorTestCase(new Color(new RGB(181, 100, 100)), new ExpectedColor('#b56464', 'rgb(181, 100, 100)'))
 
     testCase.runTest()
   })
 
   test('Changing the colour', () => {
-    const testCase = new ColorTestCase(new Color('rgb(181, 100, 100)'))
+    const testCase = new ColorTestCase(new Color(new RGB(181, 100, 100)), new ExpectedColor('#b56464', 'rgb(181, 100, 100)'))
 
     testCase.runChangeColorTest('#305e6e', new ExpectedColor('#305e6e', 'rgb(48, 94, 110)'))
   })
