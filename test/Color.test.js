@@ -73,4 +73,16 @@ describe('Color', () => {
 
     testCase.runChangeColorTest('#305e6e', new ExpectedColor('#305e6e', 'rgb(48, 94, 110)'))
   })
+
+  test('is HEX', () => {
+    const color = new Color(new RGB(48, 94, 110))
+
+    expect(color.hex).toMatch(/^#([A-F0-9]{6}|[A-F0-9]{3})$/g)
+  })
+
+  test('is RGB', () => {
+    const color = new Color(new RGB(48, 94, 110))
+
+    expect(color.rgb).toMatch(/^rgb\((([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5])), ?){2}([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5]))\)$/g)
+  })
 })
