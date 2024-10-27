@@ -6,6 +6,7 @@
  */
 
 import Color from '../src/Color.js'
+import { RGB } from '../src/RGB.js'
 
 /**
  * Represents a color test case.
@@ -33,7 +34,7 @@ class ColorTestCase {
   /**
    * Check if the object changes color correctly.
    *
-   * @param {string} newColor - The color to change the object to.
+   * @param {RGB} newColor - The color to change the object to.
    * @param {ExpectedColor} expected - The new expected color.
    */
   runChangeColorTest (newColor, expected) {
@@ -62,14 +63,26 @@ class ExpectedColor {
 
 describe('Color', () => {
   test('Initialising', () => {
-    const testCase = new ColorTestCase(new Color('rgb(181, 100, 100)'), new ExpectedColor('#b56464', 'rgb(181, 100, 100)'))
+    const testCase = new ColorTestCase(new Color(new RGB(181, 100, 100)), new ExpectedColor('#b56464', 'rgb(181, 100, 100)'))
 
     testCase.runTest()
   })
 
   test('Changing the colour', () => {
-    const testCase = new ColorTestCase(new Color('rgb(181, 100, 100)'))
+    const testCase = new ColorTestCase(new Color(new RGB(181, 100, 100)), new ExpectedColor('#b56464', 'rgb(181, 100, 100)'))
 
-    testCase.runChangeColorTest('#305e6e', new ExpectedColor('#305e6e', 'rgb(48, 94, 110)'))
+    testCase.runChangeColorTest(new RGB(48, 94, 110), new ExpectedColor('#305e6e', 'rgb(48, 94, 110)'))
+  })
+
+  test('is HEX', () => {
+    const color = new Color(new RGB(48, 94, 110))
+
+    expect(color.hex).toMatch(/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/g)
+  })
+
+  test('is RGB', () => {
+    const color = new Color(new RGB(48, 94, 110))
+
+    expect(color.rgb).toMatch(/^rgb\((([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5])), ?){2}([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5]))\)$/g)
   })
 })
