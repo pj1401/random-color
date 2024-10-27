@@ -40,6 +40,15 @@ export default class Color {
   }
 
   /**
+   * Return the color as a RGB string.
+   *
+   * @returns {string} The RGB color string
+   */
+  get rgb () {
+    return `rgb(${this.#rgb.red}, ${this.#rgb.green}, ${this.#rgb.blue})`
+  }
+
+  /**
    * Converts a number in Decimal to a Hex string.
    *
    * @param {number} number - The number in Decimal.
