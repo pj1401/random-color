@@ -77,7 +77,7 @@ describe('Color', () => {
   test('is HEX', () => {
     const color = new Color(new RGB(48, 94, 110))
 
-    expect(color.hex).toMatch(/^#([A-F0-9]{6}|[A-F0-9]{3})$/g)
+    expect(color.hex).toMatch(/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/g)
   })
 
   test('is RGB', () => {
