@@ -25,6 +25,15 @@ export default class Color {
   }
 
   /**
+   * Return the color as a RGB string.
+   *
+   * @returns {string} The RGB color string
+   */
+  get rgb () {
+    return `rgb(${this.#rgb.red}, ${this.#rgb.green}, ${this.#rgb.blue})`
+  }
+
+  /**
    * Return the color as a Hex string.
    *
    * @returns {string} The color as a Hex color string.
@@ -40,15 +49,6 @@ export default class Color {
   }
 
   /**
-   * Return the color as a RGB string.
-   *
-   * @returns {string} The RGB color string
-   */
-  get rgb () {
-    return `rgb(${this.#rgb.red}, ${this.#rgb.green}, ${this.#rgb.blue})`
-  }
-
-  /**
    * Converts a number in Decimal to a Hex string.
    *
    * @param {number} number - The number in Decimal.
@@ -59,5 +59,14 @@ export default class Color {
      * See @ling https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
      */
     return Math.abs(number).toString(16)
+  }
+
+  /**
+   * Changes the color of the object.
+   *
+   * @param {RGB} rgb - The color as an RGB object.
+   */
+  changeColor (rgb) {
+    this.#rgb = rgb
   }
 }
