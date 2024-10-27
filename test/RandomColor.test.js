@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import RandomColor from ''
+import RandomColor from '../src/RandomColor.js'
 
 /**
  * Represents a random color test case.

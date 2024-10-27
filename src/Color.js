@@ -56,7 +56,7 @@ export default class Color {
    */
   #decimalToHex (number) {
     /**
-     * See @ling https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
+     * See @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
      */
     return Math.abs(number).toString(16)
   }
