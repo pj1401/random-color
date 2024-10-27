@@ -18,15 +18,37 @@ export default class Color {
   /**
    * Initialises the object.
    *
-   * @param {string} colorString - The color as a string.
+   * @param {RGB} rgb - The color as an RGB object.
    */
-  constructor (colorString) {
-    if (this.isHEX(colorString)) {
-      this.convertFromHEX(colorString)
-    } else if (this.isRGB(colorString)) {
-      this.convertFromRGB(colorString)
-    } else {
-      throw new Error('The passed value is not a valid color.')
-    }
+  constructor (rgb) {
+    this.#rgb = rgb
+  }
+
+  /**
+   * Return the color as a Hex string.
+   *
+   * @returns {string} The color as a Hex color string.
+   */
+  get hex () {
+    /**
+     * See @link https://www.rapidtables.com/convert/color/how-rgb-to-hex.html
+     */
+    const redHex = this.#decimalToHex(this.#rgb.red)
+    const greenHex = this.#decimalToHex(this.#rgb.green)
+    const blueHex = this.#decimalToHex(this.#rgb.blue)
+    return `#${redHex}${greenHex}${blueHex}`
+  }
+
+  /**
+   * Converts a number in Decimal to a Hex string.
+   *
+   * @param {number} number - The number in Decimal.
+   * @returns {string} The number as a Hex string
+   */
+  #decimalToHex (number) {
+    /**
+     * See @ling https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
+     */
+    return Math.abs(number).toString(16)
   }
 }
