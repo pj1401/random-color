@@ -34,7 +34,7 @@ class ColorTestCase {
   /**
    * Check if the object changes color correctly.
    *
-   * @param {string} newColor - The color to change the object to.
+   * @param {RGB} newColor - The color to change the object to.
    * @param {ExpectedColor} expected - The new expected color.
    */
   runChangeColorTest (newColor, expected) {
@@ -71,7 +71,7 @@ describe('Color', () => {
   test('Changing the colour', () => {
     const testCase = new ColorTestCase(new Color(new RGB(181, 100, 100)), new ExpectedColor('#b56464', 'rgb(181, 100, 100)'))
 
-    testCase.runChangeColorTest('#305e6e', new ExpectedColor('#305e6e', 'rgb(48, 94, 110)'))
+    testCase.runChangeColorTest(new RGB(48, 94, 110), new ExpectedColor('#305e6e', 'rgb(48, 94, 110)'))
   })
 
   test('is HEX', () => {
