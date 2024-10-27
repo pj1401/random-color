@@ -85,4 +85,10 @@ describe('Color', () => {
 
     expect(color.rgb).toMatch(/^rgb\((([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5])), ?){2}([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5]))\)$/g)
   })
+
+  test('pad Hex string', () => {
+    const color = new Color(new RGB(15, 5, 14))
+
+    expect(color.hex.toLowerCase()).toStrictEqual('#0f050e')
+  })
 })
