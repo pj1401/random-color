@@ -94,12 +94,30 @@ describe('Color', () => {
 })
 
 describe('exceptions', () => {
-  test('Initialising with values out of range', () => {
-    expect(() => new Color(new RGB(256, 256, 0))).toThrow(Error)
+  describe('Initialising with values out of range', () => {
+    test('red', () => {
+      expect(() => new Color(new RGB(256, 255, 0))).toThrow(RangeError)
+    })
+    test('green', () => {
+      expect(() => new Color(new RGB(255, 256, 0))).toThrow(RangeError)
+    })
+    test('blue', () => {
+      expect(() => new Color(new RGB(0, 255, -1))).toThrow(RangeError)
+    })
   })
 
-  test('Change values to out of range', () => {
-    const color = new Color(new RGB(0, 0, 0))
-    expect(color.changeColor(new RGB(-1, 256, 256))).toThrow(Error)
+  describe('Change values to out of range', () => {
+    test('red', () => {
+      const color = new Color(new RGB(0, 0, 0))
+      expect(() => { color.changeColor(new RGB(-1, 0, 255)) }).toThrow(RangeError)
+    })
+    test('green', () => {
+      const color = new Color(new RGB(0, 0, 0))
+      expect(() => { color.changeColor(new RGB(0, 256, 255)) }).toThrow(RangeError)
+    })
+    test('blue', () => {
+      const color = new Color(new RGB(0, 0, 0))
+      expect(() => { color.changeColor(new RGB(255, 0, -1)) }).toThrow(RangeError)
+    })
   })
 })

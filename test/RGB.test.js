@@ -8,12 +8,30 @@
 import { RGB } from '../src/RGB.js'
 
 describe('exceptions', () => {
-  test('Number is out of range [0, 255]', () => {
-    expect(() => new RGB(256, 256, 256)).toThrow(Error)
+  describe('Number is out of range', () => {
+    test('red', () => {
+      expect(() => new RGB(256, 0, 255)).toThrow(RangeError)
+    })
+    test('green', () => {
+      expect(() => new RGB(255, 256, 0)).toThrow(RangeError)
+    })
+    test('blue', () => {
+      expect(() => new RGB(0, 255, -1)).toThrow(RangeError)
+    })
   })
 
-  test('Changing value to out of range', () => {
-    const rgb = new RGB(0, 0, 255)
-    expect(() => { rgb.red = -1 }).toThrow(Error)
+  describe('Changing value to out of range', () => {
+    test('red', () => {
+      const rgb = new RGB(0, 0, 255)
+      expect(() => { rgb.red = -1 }).toThrow(RangeError)
+    })
+    test('green', () => {
+      const rgb = new RGB(0, 0, 255)
+      expect(() => { rgb.green = 256 }).toThrow(RangeError)
+    })
+    test('blue', () => {
+      const rgb = new RGB(0, 0, 255)
+      expect(() => { rgb.blue = -1 }).toThrow(RangeError)
+    })
   })
 })
