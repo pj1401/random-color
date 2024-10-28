@@ -92,3 +92,14 @@ describe('Color', () => {
     expect(color.hex.toLowerCase()).toStrictEqual('#0f050e')
   })
 })
+
+describe('exceptions', () => {
+  test('Initialising with values out of range', () => {
+    expect(() => new Color(new RGB(256, 256, 0))).toThrow(Error)
+  })
+
+  test('Change values to out of range', () => {
+    const color = new Color(new RGB(0, 0, 0))
+    expect(color.changeColor(new RGB(-1, 256, 256))).toThrow(Error)
+  })
+})
