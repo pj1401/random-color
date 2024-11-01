@@ -38,8 +38,8 @@ export class RGB {
    * Set the red value.
    */
   set red (red) {
-    this.#checkNumberRange(red)
-    this.#red = red
+    this.#validateNumber(red)
+    this.#red = Math.trunc(red)
   }
 
   /**
@@ -55,8 +55,8 @@ export class RGB {
    * Set the green value.
    */
   set green (green) {
-    this.#checkNumberRange(green)
-    this.#green = green
+    this.#validateNumber(green)
+    this.#green = Math.trunc(green)
   }
 
   /**
@@ -72,12 +72,44 @@ export class RGB {
    * Set the blue value.
    */
   set blue (blue) {
-    this.#checkNumberRange(blue)
-    this.#blue = blue
+    this.#validateNumber(blue)
+    this.#blue = Math.trunc(blue)
   }
 
   /**
-   * Validate the number.
+   * Check if the passed value is a valid number that is within range.
+   *
+   * @param {object} value - The value to be tested.
+   */
+  #validateNumber (value) {
+    this.#checkIfNumber(value)
+    this.#checkNumberRange(value)
+  }
+
+  /**
+   * Check if the passed value is a number. Throws an exception if it isn't.
+   *
+   * @param {object} value - The value to be tested.
+   * @throws {TypeError} The passed argument is not a number.
+   */
+  #checkIfNumber (value) {
+    if (this.#isNotNumber(value)) {
+      throw new TypeError('The passed argument is not a number.')
+    }
+  }
+
+  /**
+   * Determines whether or not the passed value is a number.
+   *
+   * @param {object} value - The value to be tested.
+   * @returns {boolean} True if the value is not a number.
+   */
+  #isNotNumber (value) {
+    return Number.isNaN(value) || typeof value !== 'number'
+  }
+
+  /**
+   * Check if the passed value is within range. Throws an exception if it isn't.
    *
    * @param {number} value - The number to test.
    * @throws {RangeError} The value must be between 0 and 255.
@@ -89,10 +121,10 @@ export class RGB {
   }
 
   /**
-   * Return True if a number is not between 0 and 255.
+   * Determines if the passed value is not between 0 and 255.
    *
    * @param {number} value - The number to test.
-   * @returns {boolean} False if the number is between 0 and 255.
+   * @returns {boolean} True if the number is not between 0 and 255.
    */
   #valueOutOfRange (value) {
     return value < 0 || value > 255
