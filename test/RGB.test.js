@@ -8,6 +8,18 @@
 import { RGB } from '../src/RGB.js'
 
 describe('exceptions', () => {
+  describe('Input is not a number', () => {
+    test('red', () => {
+      expect(() => new RGB(NaN, 0, 255)).toThrow(TypeError)
+    })
+    test('green', () => {
+      expect(() => new RGB(255, undefined, 0)).toThrow(TypeError)
+    })
+    test('blue', () => {
+      expect(() => new RGB(0, 255, '0')).toThrow(TypeError)
+    })
+  })
+
   describe('Number is out of range', () => {
     test('red', () => {
       expect(() => new RGB(256, 0, 255)).toThrow(RangeError)
