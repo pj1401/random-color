@@ -58,7 +58,7 @@ export default class Color {
     /**
      * See @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
      */
-    return Math.abs(number).toString(16)
+    return Math.abs(number).toString(16).padStart(2, '0')
   }
 
   /**

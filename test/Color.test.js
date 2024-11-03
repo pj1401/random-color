@@ -8,6 +8,9 @@
 import Color from '../src/Color.js'
 import { RGB } from '../src/RGB.js'
 
+const HEX_REGEX = /^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/g
+const RGB_REGEX = /^rgb\((([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5])), ?){2}([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5]))\)$/g
+
 /**
  * Represents a color test case.
  */
@@ -77,12 +80,47 @@ describe('Color', () => {
   test('is HEX', () => {
     const color = new Color(new RGB(48, 94, 110))
 
-    expect(color.hex).toMatch(/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/g)
+    expect(color.hex).toMatch(HEX_REGEX)
   })
 
   test('is RGB', () => {
     const color = new Color(new RGB(48, 94, 110))
 
-    expect(color.rgb).toMatch(/^rgb\((([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5])), ?){2}([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5]))\)$/g)
+    expect(color.rgb).toMatch(RGB_REGEX)
+  })
+
+  test('pad Hex string', () => {
+    const color = new Color(new RGB(15, 5, 14))
+
+    expect(color.hex.toLowerCase()).toStrictEqual('#0f050e')
+  })
+})
+
+describe('exceptions', () => {
+  describe('Initialising with values out of range', () => {
+    test('red', () => {
+      expect(() => new Color(new RGB(256, 255, 0))).toThrow(RangeError)
+    })
+    test('green', () => {
+      expect(() => new Color(new RGB(255, 256, 0))).toThrow(RangeError)
+    })
+    test('blue', () => {
+      expect(() => new Color(new RGB(0, 255, -1))).toThrow(RangeError)
+    })
+  })
+
+  describe('Change values to out of range', () => {
+    test('red', () => {
+      const color = new Color(new RGB(0, 0, 0))
+      expect(() => { color.changeColor(new RGB(-1, 0, 255)) }).toThrow(RangeError)
+    })
+    test('green', () => {
+      const color = new Color(new RGB(0, 0, 0))
+      expect(() => { color.changeColor(new RGB(0, 256, 255)) }).toThrow(RangeError)
+    })
+    test('blue', () => {
+      const color = new Color(new RGB(0, 0, 0))
+      expect(() => { color.changeColor(new RGB(255, 0, -1)) }).toThrow(RangeError)
+    })
   })
 })
