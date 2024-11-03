@@ -27,8 +27,8 @@ class RandomColorTestCase {
    * Run the test case.
    */
   runTest () {
-    expect(this.randomColor.hex).toMatch(HEX_REGEX)
-    expect(this.randomColor.rgb).toMatch(RGB_REGEX)
+    expect(this.randomColor.getHex()).toMatch(HEX_REGEX)
+    expect(this.randomColor.getRgb()).toMatch(RGB_REGEX)
   }
 }
 
@@ -42,11 +42,11 @@ describe('Randomising colours', () => {
   test('Getting a new colour', () => {
     const randomColor = new RandomColor()
 
-    const colorA = randomColor.hex
+    const colorA = randomColor.getHex()
 
     randomColor.randomize()
 
     // Will fail if the new colour is the same.
-    expect(colorA === randomColor.hex).toBeFalsy()
+    expect(colorA === randomColor.getHex()).toBeFalsy()
   })
 })

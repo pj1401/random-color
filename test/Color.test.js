@@ -30,8 +30,8 @@ class ColorTestCase {
    * Check if the string is coverted correctly.
    */
   runTest () {
-    expect(this.color.hex).toEqual(this.expected.hex)
-    expect(this.color.rgb).toEqual(this.expected.rgb)
+    expect(this.color.getHex()).toEqual(this.expected.hex)
+    expect(this.color.getRgb()).toEqual(this.expected.rgb)
   }
 
   /**
@@ -80,19 +80,19 @@ describe('Color', () => {
   test('is HEX', () => {
     const color = new Color(new RGB(48, 94, 110))
 
-    expect(color.hex).toMatch(HEX_REGEX)
+    expect(color.getHex()).toMatch(HEX_REGEX)
   })
 
   test('is RGB', () => {
     const color = new Color(new RGB(48, 94, 110))
 
-    expect(color.rgb).toMatch(RGB_REGEX)
+    expect(color.getRgb()).toMatch(RGB_REGEX)
   })
 
   test('pad Hex string', () => {
     const color = new Color(new RGB(15, 5, 14))
 
-    expect(color.hex.toLowerCase()).toStrictEqual('#0f050e')
+    expect(color.getHex().toLowerCase()).toStrictEqual('#0f050e')
   })
 })
 
