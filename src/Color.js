@@ -42,10 +42,11 @@ export default class Color {
     /**
      * See @link https://www.rapidtables.com/convert/color/how-rgb-to-hex.html
      */
-    const redHex = this.#decimalToHex(this.#rgb.red)
-    const greenHex = this.#decimalToHex(this.#rgb.green)
-    const blueHex = this.#decimalToHex(this.#rgb.blue)
-    return `#${redHex}${greenHex}${blueHex}`
+    const hexValues = [this.#rgb.red, this.#rgb.green, this.#rgb.blue]
+    for (let i = 0; i < hexValues.length; i++) {
+      hexValues[i] = this.#decimalToHex(hexValues[i])
+    }
+    return `#${hexValues[0]}${hexValues[1]}${hexValues[2]}`
   }
 
   /**

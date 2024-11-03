@@ -23,10 +23,11 @@ export default class RandomColor extends Color {
    * Randomizes the color.
    */
   randomize () {
-    const red = this.#getRandomRGBvalue()
-    const green = this.#getRandomRGBvalue()
-    const blue = this.#getRandomRGBvalue()
-    this.changeColor(new RGB(red, green, blue))
+    const colorValues = new Array(3)
+    for (let i = 0; i < colorValues.length; i++) {
+      colorValues[i] = this.#getRandomRGBvalue()
+    }
+    this.changeColor(new RGB(colorValues[0], colorValues[1], colorValues[2]))
   }
 
   /**
