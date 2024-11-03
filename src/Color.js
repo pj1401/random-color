@@ -29,7 +29,7 @@ export default class Color {
    *
    * @returns {string} The RGB color string
    */
-  get rgb () {
+  getRgb () {
     return `rgb(${this.#rgb.red}, ${this.#rgb.green}, ${this.#rgb.blue})`
   }
 
@@ -38,7 +38,7 @@ export default class Color {
    *
    * @returns {string} The color as a Hex color string.
    */
-  get hex () {
+  getHex () {
     /**
      * See @link https://www.rapidtables.com/convert/color/how-rgb-to-hex.html
      */
