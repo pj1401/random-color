@@ -94,6 +94,12 @@ describe('Color', () => {
 
     expect(color.getHex().toLowerCase()).toStrictEqual('#0f050e')
   })
+
+  test('Get Hsl string', () => {
+    const color = new Color(new RGB(0, 191, 255))
+
+    expect(color.getHsl().toLowerCase()).toStrictEqual('hsl(195, 100%, 50%)')
+  })
 })
 
 describe('exceptions', () => {
