@@ -4,6 +4,8 @@
  * @version 1.0.0
  */
 
+import { RgbToHslConverter } from './RgbToHslConverter.js'
+import { HSL } from './HSL.js'
 import { RGB } from './RGB.js'
 
 /**
@@ -16,12 +18,18 @@ export default class Color {
   #rgb
 
   /**
+   * @type {HSL}
+   */
+  #hsl
+
+  /**
    * Initialises the object.
    *
    * @param {RGB} rgb - The color as an RGB object.
    */
   constructor (rgb) {
     this.#rgb = rgb
+    this.#hsl = new RgbToHslConverter().convertRgbToHsl(this.#rgb)
   }
 
   /**
@@ -63,11 +71,21 @@ export default class Color {
   }
 
   /**
+   * Return the color as a Hsl string.
+   *
+   * @returns {string} The color as a Hsl color string.
+   */
+  getHsl () {
+    return this.#hsl.toString()
+  }
+
+  /**
    * Changes the color of the object.
    *
    * @param {RGB} rgb - The color as an RGB object.
    */
   changeColor (rgb) {
     this.#rgb = rgb
+    this.#hsl = new RgbToHslConverter().convertRgbToHsl(this.#rgb)
   }
 }
