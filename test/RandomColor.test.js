@@ -9,6 +9,7 @@ import RandomColor from '../src/RandomColor.js'
 
 const HEX_REGEX = /^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/g
 const RGB_REGEX = /^rgb\((([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5])), ?){2}([0-1]?(\d{1,2})|[2]([0-4][0-9]|[5][0-5]))\)$/g
+const HSL_REGEX = /^hsl\(([1-2]?(\d{1,2})|[3][0-5](\d{1})), ?(\d{1,2}|[1][0][0])%, ?(\d{1,2}|[1][0][0])%\)/g
 
 /**
  * Represents a random color test case.
@@ -29,6 +30,7 @@ class RandomColorTestCase {
   runTest () {
     expect(this.randomColor.getHex()).toMatch(HEX_REGEX)
     expect(this.randomColor.getRgb()).toMatch(RGB_REGEX)
+    expect(this.randomColor.getHsl()).toMatch(HSL_REGEX)
   }
 }
 
