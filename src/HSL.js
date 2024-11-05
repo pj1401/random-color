@@ -37,6 +37,6 @@ export class HSL {
    * @returns {string} The decimal in percent.
    */
   #getPercent (decimal) {
-    return `${decimal * 100}%`
+    return `${Math.trunc(decimal * 100)}%`
   }
 }
