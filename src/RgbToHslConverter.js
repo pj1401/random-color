@@ -34,9 +34,10 @@ export class RgbToHslConverter {
 
     this.#value = Math.max(this.#scaledRed, this.#scaledGreen, this.#scaledBlue)
     const min = Math.min(this.#scaledRed, this.#scaledGreen, this.#scaledBlue)
+    const chroma = this.#value - min
 
-    this.#lightness = (this.#value - min) / 2
-    const hue = this.#getHue(min)
+    this.#lightness = chroma / 2
+    const hue = this.#getHue(chroma)
     const saturation = this.#getSaturation()
     return new HSL(hue, saturation, this.#lightness)
   }
@@ -44,11 +45,10 @@ export class RgbToHslConverter {
   /**
    * Get the hue.
    *
-   * @param {number} min - The lowest color value.
+   * @param {number} chroma - The range of the rgb values.
    * @returns {number} The hue in degrees.
    */
-  #getHue (min) {
-    const chroma = this.#value - min
+  #getHue (chroma) {
     let hue
     if (this.#redIsMax()) {
       hue = ((this.#scaledGreen - this.#scaledBlue) / chroma) % 6
